@@ -9,6 +9,6 @@ require 'vendor/autoload.php';
 
 $app = new Symfony\Component\Console\Application('Sauce', '0.1.0');
 
-
+$app->add(new Sauce\Commands\RunCommand);
 
 exit($app->run());
