@@ -24,13 +24,14 @@ class ClosureReflection {
      * Execute the closure with a given context
      *
      * @param mixed $context
+     * @param array $arguments
      * @return mixed
      */
-    public function withContext($context)
+    public function withContext($context, array $arguments = [])
     {
         $bound = $this->closure->bindTo($context);
 
-        return $bound();
+        return \call_user_func_array($bound, $arguments);
     }
 
     /**

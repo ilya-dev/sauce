@@ -9,7 +9,7 @@ class ClosureReflectionSpec extends ObjectBehavior {
     {
         $this->beConstructedWith(function($bar = null)
         {
-            return $this->foo;
+            return $this->foo.$bar;
         });
     }
 
@@ -23,6 +23,8 @@ class ClosureReflectionSpec extends ObjectBehavior {
         $context = (object) ['foo' => 'Hello, world!'];
 
         $this->withContext($context)->shouldReturn('Hello, world!');
+
+        $this->withContext($context, [' Dummy'])->shouldReturn('Hello, world! Dummy');
     }
 
     function it_returns_an_array_of_ReflectionParameter_instances()
