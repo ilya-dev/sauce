@@ -33,6 +33,7 @@ class RunCommand extends Command {
     {
         $task = $input->getArgument('task');
 
+        $output->writeln('The work dir is '.getenv('SAUCE_WORK_DIR'));
         $output->writeln("<info>Running the task {$task}...</info>");
     }
 

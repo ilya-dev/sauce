@@ -5,10 +5,14 @@ error_reporting(-1);
 set_time_limit(0);
 date_default_timezone_set('UTC');
 
+putenv('SAUCE_WORK_DIR='.getcwd());
+
 require 'vendor/autoload.php';
+require 'src/functions.php';
 
 $app = new Symfony\Component\Console\Application('Sauce', '0.1.0');
 
 $app->add(new Sauce\Commands\RunCommand);
 
 exit($app->run());
+
