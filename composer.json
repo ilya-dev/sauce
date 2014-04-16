@@ -1,0 +1,14 @@
+{
+    "name": "ilya/sauce",
+    "description": "Modern task runner for PHP 5.5+",
+    "license": "MIT",
+    "keywords": ["task", "runner"],
+    "require-dev": {
+        "phpspec/phpspec": "~2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sauce\\": "src/"
+        }
+    }
+}
