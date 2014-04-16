@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+error_reporting(-1);
+set_time_limit(0);
+date_default_timezone_set('UTC');
+
+require 'vendor/autoload.php';
+
+$app = new Symfony\Component\Console\Application('Sauce', '0.1.0');
+
+
+
+exit($app->run());
