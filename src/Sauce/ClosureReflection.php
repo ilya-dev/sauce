@@ -33,5 +33,15 @@ class ClosureReflection {
         return $bound();
     }
 
+    /**
+     * Get the array of parameters (\ReflectionParameter)
+     *
+     * @return array
+     */
+    public function getParameters()
+    {
+        return (new \ReflectionFunction($this->closure))->getParameters();
+    }
+
 }
 
