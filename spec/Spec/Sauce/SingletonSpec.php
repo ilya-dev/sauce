@@ -12,22 +12,7 @@ class SingletonSpec extends ObjectBehavior {
 
     function it_persists_the_instance()
     {
-        $this->shouldBePersistedAndEqualTo(\Sauce\Singleton::getInstance());
-    }
-
-    /**
-     * Get the inline matchers
-     *
-     * @return array
-     */
-    public function getMatchers()
-    {
-        return [
-            'bePersistedAndEqualTo' => function($subject, $object)
-            {
-                return ($object) == $subject;
-            },
-        ];
+        $this->shouldBeLike(\Sauce\Singleton::getInstance());
     }
 
 }
