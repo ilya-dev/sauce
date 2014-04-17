@@ -7,7 +7,7 @@ trait SingletonTrait {
      *
      * @var mixed
      */
-    protected $instance;
+    protected static $instance;
 
     /**
      * Get the stored instance
@@ -16,12 +16,12 @@ trait SingletonTrait {
      */
     public static function getInstance()
     {
-        if ( ! ($this->instance instanceof static))
+        if ( ! (static::$instance instanceof static))
         {
-            $this->instance = new static;
+            static::$instance = new static;
         }
 
-        return $this->instance;
+        return static::$instance;
     }
 
 }
