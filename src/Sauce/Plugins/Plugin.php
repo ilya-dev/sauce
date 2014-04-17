@@ -16,7 +16,7 @@ abstract class Plugin {
      * @param string $to
      * @return mixed
      */
-    abstract protected function run($from, $to);
+    public function run($from, $to);
 
     /**
      * Gets called when the object is called as a function
