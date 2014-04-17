@@ -14,7 +14,7 @@ abstract class Plugin {
      *
      * @param string $from
      * @param string $to
-     * @return mixed
+     * @return void
      */
     public function run($from, $to);
 
