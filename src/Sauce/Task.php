@@ -31,6 +31,16 @@ class Task {
     }
 
     /**
+     * Get the task name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set the dependencies
      *
      * @param array|\Closure $dependencies

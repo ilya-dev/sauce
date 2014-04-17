@@ -2,6 +2,7 @@
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sauce\Task;
 
 class TaskRegistrySpec extends ObjectBehavior {
 
@@ -10,7 +11,16 @@ class TaskRegistrySpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\TaskRegistry');
     }
 
+    function it_registers_a_task(Task $mock)
+    {
+        $mock->getName()->willReturn('default');
 
+        $this->register($mock);
+
+        $this->getTasks()->shouldReturn([
+            'default' => $mock
+        ]);
+    }
 
 }
 
