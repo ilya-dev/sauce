@@ -10,7 +10,12 @@ class FilesystemSpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\Filesystem');
     }
 
+    function it_detects_a_directory()
+    {
+        $this->isDirectory(\uniqid())->shouldBe(false);
 
+        $this->isDirectory(__DIR__)->shouldBe(true);
+    }
 
 }
 

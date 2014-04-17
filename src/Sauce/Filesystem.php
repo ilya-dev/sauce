@@ -22,5 +22,16 @@ class Filesystem {
         $this->finder = $finder ?: new Finder;
     }
 
+    /**
+     * Determine whether the given path points to a directory
+     *
+     * @param string $path
+     * @return bool
+     */
+    public function isDirectory($path)
+    {
+        return \is_dir($path);
+    }
+
 }
 
