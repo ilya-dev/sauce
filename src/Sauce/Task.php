@@ -30,5 +30,26 @@ class Task {
         $this->dependencies = $dependencies;
     }
 
+    /**
+     * Set the dependencies
+     *
+     * @param array|\Closure $dependencies
+     * @return void
+     */
+    public function setDependencies($dependencies)
+    {
+        $this->dependencies = $dependencies;
+    }
+
+    /**
+     * Get the dependencies
+     *
+     * @return array|\Closure
+     */
+    public function getDependencies()
+    {
+        return $this->dependencies;
+    }
+
 }
 

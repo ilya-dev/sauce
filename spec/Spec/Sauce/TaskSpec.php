@@ -15,7 +15,12 @@ class TaskSpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\Task');
     }
 
+    function it_sets_and_returns_the_dependencies()
+    {
+        $this->setDependencies(function() {});
 
+        $this->getDependencies()->shouldHaveType('Closure');
+    }
 
 }
 
