@@ -32,5 +32,24 @@ class TaskRegistry {
         return $this->tasks;
     }
 
+    /**
+     * Get a task
+     *
+     * @throws \UnexpectedValueException
+     * @param string $name
+     * @return Task
+     */
+    public function getTask($name)
+    {
+        if ( ! \array_key_exists($name, $this->tasks))
+        {
+            $message = "Task '{$name}' does not exist";
+
+            throw new \UnexpectedValueException($message);
+        }
+
+        return $this->tasks[$name];
+    }
+
 }
 

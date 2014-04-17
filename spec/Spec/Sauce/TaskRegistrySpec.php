@@ -22,5 +22,16 @@ class TaskRegistrySpec extends ObjectBehavior {
         ]);
     }
 
+    function it_returns_the_task(Task $mock)
+    {
+        $this->shouldThrow('UnexpectedValueException')->duringGetTask(\uniqid());
+
+        $mock->getName()->willReturn('default');
+
+        $this->register($mock);
+
+        $this->getTask('default')->shouldReturn($mock);
+    }
+
 }
 
