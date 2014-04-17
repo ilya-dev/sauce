@@ -11,6 +11,11 @@ class TaskRegistrySpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\TaskRegistry');
     }
 
+    function it_returns_all_tasks()
+    {
+        $this->getTasks()->shouldBe([]);
+    }
+
     function it_registers_a_task(Task $mock)
     {
         $mock->getName()->willReturn('default');
@@ -27,7 +32,6 @@ class TaskRegistrySpec extends ObjectBehavior {
         $this->shouldThrow('UnexpectedValueException')->duringGetTask(\uniqid());
 
         $mock->getName()->willReturn('default');
-
         $this->register($mock);
 
         $this->getTask('default')->shouldReturn($mock);
