@@ -41,6 +41,10 @@ class FilesystemSpec extends ObjectBehavior {
         $this->combine(['foo', 'bar'], 'baz')->shouldReturn([
             ['foo', 'baz'], ['bar', 'baz'],
         ]);
+
+        $this->shouldThrow('InvalidArgumentException')->duringCombine([], null);
+
+        $this->shouldThrow('LogicException')->duringCombine([0], [0, 1]);
     }
 
     /**

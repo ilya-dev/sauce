@@ -78,6 +78,19 @@ class Filesystem {
         {
             $to = \array_fill(0, \count($from), $to);
         }
+        elseif ( ! \is_array($to))
+        {
+            $message = "The second argument must be either a string or an array";
+
+            throw new \InvalidArgumentException($message);
+        }
+
+        if (\count($from) != \count($to))
+        {
+            $message = "Arguments have a different amount of elements";
+
+            throw new \LogicException($message);
+        }
 
         $iterator = function($from, $to)
         {
