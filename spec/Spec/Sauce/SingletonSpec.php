@@ -2,6 +2,7 @@
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sauce\Singleton;
 
 class SingletonSpec extends ObjectBehavior {
 
@@ -12,7 +13,9 @@ class SingletonSpec extends ObjectBehavior {
 
     function it_persists_the_instance()
     {
-        $this->shouldBeLike(\Sauce\Singleton::getInstance());
+        $this->shouldBeLike(Singleton::getInstance());
+
+        $this->shouldBeLike(Singleton::getInstance());
     }
 
 }
