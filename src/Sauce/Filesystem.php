@@ -33,5 +33,37 @@ class Filesystem {
         return \is_dir($path);
     }
 
+    /**
+     * Determine whether the given path points to a file
+     *
+     * @param string $path
+     * @return bool
+     */
+    public function isFile($path)
+    {
+        return \is_file($path);
+    }
+
+    /**
+     * Get all files placed in the given directory.
+     * The output will be like ['foo.txt', 'bar.jpg', ...]
+     *
+     * @param string $directory
+     * @return array
+     */
+    public function getAllFiles($directory)
+    {
+        $files = [];
+
+        $this->finder->in($directory)->files();
+
+        foreach ($this->finder as $file)
+        {
+            $files[] = $file->getFilename();
+        }
+
+        return $files;
+    }
+
 }
 
