@@ -32,6 +32,17 @@ class FilesystemSpec extends ObjectBehavior {
         $files->shouldContain(\basename(__FILE__));
     }
 
+    function it_combines_two_arrays()
+    {
+        $this->combine(['foo', 'bar', 'baz'], ['wow', 'so', 'amaze'])->shouldReturn([
+            ['foo', 'wow'], ['bar', 'so'], ['baz', 'amaze'],
+        ]);
+
+        $this->combine(['foo', 'bar'], 'baz')->shouldReturn([
+            ['foo', 'baz'], ['bar', 'baz'],
+        ]);
+    }
+
     /**
      * Get the inline matchers
      *

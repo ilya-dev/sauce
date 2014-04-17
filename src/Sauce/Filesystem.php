@@ -65,5 +65,27 @@ class Filesystem {
         return $files;
     }
 
+    /**
+     * "Combine" two elements (file/directory)
+     *
+     * @param array $from
+     * @param array|string $to
+     * @return array
+     */
+    public function combine(array $from, $to)
+    {
+        if (\is_string($to))
+        {
+            $to = \array_fill(0, \count($from), $to);
+        }
+
+        $iterator = function($from, $to)
+        {
+            return [$from, $to];
+        };
+
+        return \array_map($iterator, $from, $to);
+    }
+
 }
 
