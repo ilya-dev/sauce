@@ -2,11 +2,11 @@
 
 if ( ! function_exists('task'))
 {
-    function task()
+    function task($name, $dependencies)
     {
-        $arguments = func_get_args();
+        $task = new Sauce\Task($name, $dependencies);
 
-        // call_user_func_array(['Sauce\Task', 'register'], $arguments) ?
+        Sauce\TaskRegistry::getInstance()->register($task);
     }
 }
 
