@@ -3,6 +3,9 @@
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+use Sauce\TaskRegistry;
+use Sauce\Task;
+
 class TaskSpec extends ObjectBehavior {
 
     function let()
@@ -20,6 +23,16 @@ class TaskSpec extends ObjectBehavior {
         $this->setDependencies(function() {});
 
         $this->getDependencies()->shouldHaveType('Closure');
+    }
+
+    function it_runs_the_task(TaskRegistry $registry, Task $task)
+    {
+        $task->run($registry)->shouldBeCalled(2);
+
+        $registry->getTask('minify_css')->willReturn($task);
+        $registry->getTask('minify_js')->willReturn($task);
+
+        $this->run($registry);
     }
 
 }

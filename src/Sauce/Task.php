@@ -31,6 +31,20 @@ class Task {
     }
 
     /**
+     * Run the task
+     *
+     * @param TaskRegistry $registry
+     * @return void
+     */
+    public function run(TaskRegistry $registry)
+    {
+        foreach ($this->dependencies as $dependency)
+        {
+            $registry->getTask($dependency)->run($registry);
+        }
+    }
+
+    /**
      * Get the task name
      *
      * @return string
