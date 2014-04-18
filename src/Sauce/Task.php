@@ -56,7 +56,14 @@ class Task {
         {
             $closure = $this->dependencies;
 
-            $closure();
+            $parameters = $this->reflector->getParameters();
+
+            if (\count($parameters) > 0)
+            {
+                $parameters = $this->reflector->resolve($this->plugins);
+            }
+
+            \call_user_func_array($closure, $parameters);
         }
 
         foreach ($this->dependencies as $dependency)

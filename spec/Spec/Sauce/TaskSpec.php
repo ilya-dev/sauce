@@ -41,6 +41,10 @@ class TaskSpec extends ObjectBehavior {
         $this->run($tasks);
 
         // case #2: task("name", function(void) { ... })
+        $reflector->resolve($plugins)->willReturn([]);
+
+        $this->setReflector($reflector);
+
         $this->setDependencies(function()
         {
             throw new \Exception('Catch me, mister');
@@ -49,8 +53,8 @@ class TaskSpec extends ObjectBehavior {
         $this->shouldThrow('Exception')->duringRun();
 
         // case #3: task("name", function($someDependency) { ... })
-        $reflector->resolve($plugins)->willReturn(['foo']);
-        $plugins->getPlugin('foo')->willReturn(new \LogicException('Try to catch me, fool!'));
+        $reflector->getParameters()->willReturn(['dumb parameter']);
+        $reflector->resolve($plugins)->willReturn([new \LogicException('Try to catch me, fool!')]);
 
         $this->setReflector($reflector);
         $this->setPluginRegistry($plugins);
