@@ -10,7 +10,20 @@ class PluginRegistrySpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\PluginRegistry');
     }
 
+    function it_returns_all_registered_plugins()
+    {
+        $this->getPlugins()->shouldReturn([]);
+    }
 
+    function it_registers_the_default_plugins()
+    {
+        $this->registerDefaultPlugins();
+
+        $plugins = $this->getPlugins();
+
+        $plugins->shouldBeArray();
+        $plugins->shouldHaveCount(3);
+    }
 
 }
 
