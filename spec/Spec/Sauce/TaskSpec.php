@@ -50,13 +50,17 @@ class TaskSpec extends ObjectBehavior {
 
         // case #3: task("name", function($someDependency) { ... })
         $reflector->resolve($plugins)->willReturn(['foo']);
+        $plugins->getPlugin('foo')->willReturn(new \LogicException('Try to catch me, fool!'));
+
+        $this->setReflector($reflector);
+        $this->setPluginRegistry($plugins);
 
         $this->setDependencies(function($foo)
         {
             throw $foo;
         });
 
-        $this->shouldThrow('Exception')->duringRun();
+        $this->shouldThrow('LogicException')->duringRun();
     }
 
 }

@@ -87,6 +87,17 @@ class Task {
     }
 
     /**
+     * Set the PluginRegistry instance
+     *
+     * @param PluginRegistry $plugins
+     * @return void
+     */
+    public function setPluginRegistry(PluginRegistry $plugins)
+    {
+        $this->plugins = $plugins;
+    }
+
+    /**
      * Set the dependencies
      *
      * @param array|\Closure $dependencies
