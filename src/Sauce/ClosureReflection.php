@@ -44,5 +44,23 @@ class ClosureReflection {
         return (new \ReflectionFunction($this->closure))->getParameters();
     }
 
+    /**
+     * Resolve the dependencies out of the given PluginRegistry
+     *
+     * @param PluginRegistry $registry
+     * @return array
+     */
+    public function resolve(PluginRegistry $registry)
+    {
+        $parameters = $this->getParameters();
+
+        $iterator = function(\ReflectionParameter $parameter) use($registry)
+        {
+            return $registry->getPlugin($parameter->getName());
+        };
+
+        return \array_map($iterator, $parameters);
+    }
+
 }
 

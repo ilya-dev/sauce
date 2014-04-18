@@ -3,6 +3,8 @@
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+use Sauce\PluginRegistry;
+
 class ClosureReflectionSpec extends ObjectBehavior {
 
     function let()
@@ -34,6 +36,13 @@ class ClosureReflectionSpec extends ObjectBehavior {
         $parameters->shouldBeArray();
         $parameters->shouldHaveCount(1);
         $parameters->shouldAllHaveType('ReflectionParameter');
+    }
+
+    function it_resolves_dependencies_out_of_the_given_PluginRegistry(PluginRegistry $registry)
+    {
+        $registry->getPlugin('bar')->willReturn('wow');
+
+        $this->resolve($registry)->shouldReturn(['wow']);
     }
 
     /**
