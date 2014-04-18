@@ -17,6 +17,13 @@ class Task {
     protected $dependencies;
 
     /**
+     * The ClosureReflection instance
+     *
+     * @var ClosureReflection
+     */
+    protected $reflector;
+
+    /**
      * The constructor
      *
      * @param string $name
@@ -28,6 +35,11 @@ class Task {
         $this->name = $name;
 
         $this->dependencies = $dependencies;
+
+        if ($dependencies instanceof \Closure)
+        {
+            $this->reflector = new ClosureReflection($dependencies);
+        }
     }
 
     /**
@@ -61,6 +73,17 @@ class Task {
         return $this->name;
     }
 
+    /**
+     * Set the ClosureReflection instance
+     *
+     * @param ClosureReflection $reflector
+     * @return void
+     */
+    public function setReflector(ClosureReflection $reflector)
+    {
+        $this->reflector = $reflector;
+    }
+    
     /**
      * Set the dependencies
      *
