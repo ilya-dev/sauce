@@ -22,6 +22,25 @@ class PluginRegistry {
     }
 
     /**
+     * Get a plugin
+     *
+     * @param string $name
+     * @throws \UnexpectedValueException
+     * @return Plugins\Plugin
+     */
+    public function getPlugin($name)
+    {
+        if ( ! \array_key_exists($name, $this->plugins))
+        {
+            $message = "Plugin '{$name}' does not exist";
+
+            throw new \UnexpectedValueException($message);
+        }
+
+        return $this->plugins[$name];
+    }
+
+    /**
      * Register a plugin
      *
      * @param Plugins\Plugin $plugin

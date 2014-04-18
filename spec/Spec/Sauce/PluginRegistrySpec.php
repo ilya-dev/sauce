@@ -28,6 +28,17 @@ class PluginRegistrySpec extends ObjectBehavior {
         ]);
     }
 
+    function it_returns_a_plugin(Plugin $mock)
+    {
+        $mock->getName()->willReturn('foo');
+
+        $this->register($mock);
+
+        $this->getPlugin('foo')->shouldReturn($mock);
+
+        $this->shouldThrow('UnexpectedValueException')->duringGetPlugin(\uniqid());
+    }
+
     function it_registers_the_default_plugins()
     {
         $this->registerDefaultPlugins();
