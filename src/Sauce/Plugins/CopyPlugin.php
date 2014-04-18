@@ -14,5 +14,15 @@ class CopyPlugin extends Plugin {
 
     }
 
+    /**
+     * Get the plugin name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return 'copy';
+    }
+
 }
 

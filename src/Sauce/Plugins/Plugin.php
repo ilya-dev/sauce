@@ -10,13 +10,20 @@ abstract class Plugin {
     protected $settings = [];
 
     /**
+     * Get the plugin name
+     *
+     * @return string
+     */
+    public abstract function getName();
+
+    /**
      * Run a plugin
      *
      * @param string $from
      * @param string $to
      * @return void
      */
-    public function run($from, $to);
+    public abstract function run($from, $to);
 
     /**
      * Gets called when the object is called as a function

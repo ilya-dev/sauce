@@ -2,9 +2,9 @@
 
 return [
 
-    'copy'       =>   'Sauce\Plugins\CopyPlugin',
-    'move'       =>   'Sauce\Plugins\MovePlugin',
-    'concat'     =>   'Sauce\Plugins\ConcatPlugin',
+    'Sauce\Plugins\CopyPlugin',
+    'Sauce\Plugins\MovePlugin',
+    'Sauce\Plugins\ConcatPlugin',
 
 ];
 

@@ -14,5 +14,15 @@ class ConcatPlugin extends Plugin {
 
     }
 
+    /**
+     * Get the plugin name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return 'concat';
+    }
+
 }
 
