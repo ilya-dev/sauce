@@ -5,6 +5,8 @@ use Prophecy\Argument;
 
 use Sauce\TaskRegistry;
 use Sauce\Task;
+use Sauce\PluginRegistry;
+use Sauce\ClosureReflection;
 
 class TaskSpec extends ObjectBehavior {
 
@@ -25,18 +27,33 @@ class TaskSpec extends ObjectBehavior {
         $this->getDependencies()->shouldHaveType('Closure');
     }
 
-    function it_runs_the_task(TaskRegistry $registry, Task $task)
+    function it_runs_the_task(
+        TaskRegistry $tasks, Task $task,
+        PluginRegistry $plugins, ClosureReflection $reflector
+    )
     {
-        $task->run($registry)->shouldBeCalled(2);
+        // case #1: task("name", [...])
+        $task->run($tasks)->shouldBeCalled(2);
 
-        $registry->getTask('minify_css')->willReturn($task);
-        $registry->getTask('minify_js')->willReturn($task);
+        $tasks->getTask('minify_css')->willReturn($task);
+        $tasks->getTask('minify_js')->willReturn($task);
 
-        $this->run($registry);
+        $this->run($tasks);
 
+        // case #2: task("name", function(void) { ... })
         $this->setDependencies(function()
         {
             throw new \Exception('Catch me, mister');
+        });
+
+        $this->shouldThrow('Exception')->duringRun();
+
+        // case #3: task("name", function($someDependency) { ... })
+        $reflector->resolve($plugins)->willReturn(['foo']);
+
+        $this->setDependencies(function($foo)
+        {
+            throw $foo;
         });
 
         $this->shouldThrow('Exception')->duringRun();

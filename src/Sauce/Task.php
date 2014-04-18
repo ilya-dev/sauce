@@ -24,6 +24,13 @@ class Task {
     protected $reflector;
 
     /**
+     * The PluginRegistry instance
+     *
+     * @var PluginRegistry
+     */
+    protected $plugins;
+
+    /**
      * The constructor
      *
      * @param string $name
@@ -35,11 +42,6 @@ class Task {
         $this->name = $name;
 
         $this->dependencies = $dependencies;
-
-        if ($dependencies instanceof \Closure)
-        {
-            $this->reflector = new ClosureReflection($dependencies);
-        }
     }
 
     /**
@@ -83,7 +85,7 @@ class Task {
     {
         $this->reflector = $reflector;
     }
-    
+
     /**
      * Set the dependencies
      *
