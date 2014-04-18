@@ -1,5 +1,7 @@
 <?php namespace Sauce;
 
+use Sauce\Plugins\Plugin;
+
 class PluginRegistry {
 
     /**
@@ -20,13 +22,27 @@ class PluginRegistry {
     }
 
     /**
+     * Register a plugin
+     *
+     * @param Plugins\Plugin $plugin
+     * @return void
+     */
+    public function register(Plugin $plugin)
+    {
+        $this->plugins[$plugin->getName()] = $plugin;
+    }
+
+    /**
      * Register the default plugins (src/Plugins/plugins.php)
      *
      * @return void
      */
     public function registerDefaultPlugins()
     {
-        $this->plugins = \array_merge($this->plugins, require __DIR__.'/Plugins/plugins.php');
+        foreach (require __DIR__.'/Plugins/plugins.php' as $plugin)
+        {
+            $this->register(new $plugin);
+        }
     }
 
 }
