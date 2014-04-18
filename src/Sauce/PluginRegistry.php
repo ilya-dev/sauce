@@ -4,6 +4,8 @@ use Sauce\Plugins\Plugin;
 
 class PluginRegistry {
 
+    use SingletonTrait;
+
     /**
      * The registered plugins
      *
