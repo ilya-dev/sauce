@@ -33,6 +33,13 @@ class TaskSpec extends ObjectBehavior {
         $registry->getTask('minify_js')->willReturn($task);
 
         $this->run($registry);
+
+        $this->setDependencies(function()
+        {
+            throw new \Exception('Catch me, mister');
+        });
+
+        $this->shouldThrow('Exception')->duringRun();
     }
 
 }

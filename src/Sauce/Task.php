@@ -33,11 +33,18 @@ class Task {
     /**
      * Run the task
      *
-     * @param TaskRegistry $registry
+     * @param TaskRegistry|null $registry
      * @return void
      */
-    public function run(TaskRegistry $registry)
+    public function run(TaskRegistry $registry = null)
     {
+        if ($this->dependencies instanceof \Closure)
+        {
+            $closure = $this->dependencies;
+
+            $closure();
+        }
+
         foreach ($this->dependencies as $dependency)
         {
             $registry->getTask($dependency)->run($registry);
