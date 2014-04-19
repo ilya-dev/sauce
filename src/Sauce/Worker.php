@@ -62,6 +62,8 @@ class Worker {
     public function in($path)
     {
         $this->in = $path;
+
+        return $this;
     }
 
     /**
@@ -73,6 +75,8 @@ class Worker {
     public function pipe(Plugin $plugin)
     {
         $this->plugins[] = $plugin;
+
+        return $this;
     }
 
     /**
