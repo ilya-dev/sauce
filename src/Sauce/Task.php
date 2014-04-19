@@ -64,6 +64,8 @@ class Task {
             }
 
             \call_user_func_array($closure, $parameters);
+
+            return null;
         }
 
         foreach ($this->dependencies as $dependency)
