@@ -12,6 +12,13 @@ class Worker {
     protected $utils;
 
     /**
+     * The Filesystem instance
+     *
+     * @var Filesystem
+     */
+    protected $file;
+
+    /**
      * The plugins you want to use
      *
      * @var array
@@ -36,11 +43,14 @@ class Worker {
      * The constructor
      *
      * @param Utils|null $utils
+     * @param Filesystem|null $file
      * @return Worker
      */
-    public function __construct(Utils $utils = null)
+    public function __construct(Utils $utils = null, Filesystem $file = null)
     {
         $this->utils  = $utils ?: new Utils;
+
+        $this->file = $file ?: new Filesystem;
     }
 
     /**
@@ -74,6 +84,34 @@ class Worker {
     public function out($path)
     {
         $this->out = $path;
+
+        $this->run();
+    }
+
+    /**
+     * Run
+     *
+     * @return void
+     */
+    protected function run()
+    {
+        $in = $this->in;
+
+        $in = $this->file->isDirectory($in) ? $this->file->getAllFiles($in) : [$in];
+
+        $paths = $this->utils->combine($in, $this->out);
+
+        foreach ($this->plugins as $plugin)
+        {
+            /**
+             * @var Plugins\Plugin $plugin
+             */
+
+            foreach ($paths as $from => $to)
+            {
+                $plugin->run($from, $to);
+            }
+        }
     }
 
 }
