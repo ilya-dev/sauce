@@ -47,6 +47,8 @@ class Task {
         {
             $this->reflector = new ClosureReflection($dependencies);
         }
+
+        $this->plugins = PluginRegistry::getInstance();
     }
 
     /**

@@ -54,12 +54,12 @@ class ClosureReflection {
     {
         $parameters = $this->getParameters();
 
-        $iterator = function(\ReflectionParameter $parameter) use($registry)
+        foreach ($parameters as $key => $parameter)
         {
-            return $registry->getPlugin($parameter->getName());
-        };
+            $parameters[$key] = $registry->getPlugin($parameter->getName());
+        }
 
-        return \array_map($iterator, $parameters);
+        return $parameters;
     }
 
 }
