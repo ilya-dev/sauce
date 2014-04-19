@@ -11,7 +11,12 @@ class MovePlugin extends Plugin {
      */
     public function run($from, $to)
     {
+        $file = $this->filesystem;
 
+        if ($file->rewrite($to, $file->read($from)))
+        {
+            $file->remove($from);
+        }
     }
 
     /**
