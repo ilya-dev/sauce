@@ -1,0 +1,20 @@
+{
+    "main": "sauce",
+    "output": "sauce.phar",
+    "files": ["LICENSE"],
+    "stub": true,
+    "finder": [
+        {
+            "name": "*.php",
+            "in": "src"
+        },
+        {
+            "name": "*.php",
+            "in": "vendor",
+            "exclude": [
+                "bin", "phpspec"
+            ]
+        }
+    ]
+}
+
