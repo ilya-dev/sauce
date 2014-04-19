@@ -1,5 +1,7 @@
 <?php namespace Sauce\Plugins;
 
+use Sauce\Filesystem;
+
 abstract class Plugin {
 
     /**
@@ -8,6 +10,24 @@ abstract class Plugin {
      * @var array
      */
     protected $settings = [];
+
+    /**
+     * The Filesystem instance
+     *
+     * @var \Sauce\Filesystem
+     */
+    protected $filesystem;
+
+    /**
+     * The constructor
+     *
+     * @param \Sauce\Filesystem|null $filesystem
+     * @return Plugin
+     */
+    public function __construct(Filesystem $filesystem = null)
+    {
+        $this->filesystem = $filesystem ?: new Filesystem;
+    }
 
     /**
      * Get the plugin name

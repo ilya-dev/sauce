@@ -1,16 +1,8 @@
 <?php namespace Sauce;
 
-use PhpSpec\Util\Filesystem;
 use Sauce\Plugins\Plugin;
 
 class Worker {
-
-    /**
-     * The Filesystem instance
-     *
-     * @var Filesystem
-     */
-    protected $filesystem;
 
     /**
      * The Utils instance
@@ -43,14 +35,11 @@ class Worker {
     /**
      * The constructor
      *
-     * @param Filesystem|null $filesystem
      * @param Utils|null $utils
      * @return Worker
      */
-    public function __construct(Filesystem $filesystem = null, Utils $utils = null)
+    public function __construct(Utils $utils = null)
     {
-        $this->filesystem = $filesystem ?: new Filesystem;
-
         $this->utils  = $utils ?: new Utils;
     }
 
