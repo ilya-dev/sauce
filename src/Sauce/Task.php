@@ -42,6 +42,11 @@ class Task {
         $this->name = $name;
 
         $this->dependencies = $dependencies;
+
+        if ($dependencies instanceof \Closure)
+        {
+            $this->reflector = new ClosureReflection($dependencies);
+        }
     }
 
     /**
