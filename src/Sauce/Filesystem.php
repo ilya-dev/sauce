@@ -65,5 +65,40 @@ class Filesystem {
         return $files;
     }
 
+    /**
+     * Read a file
+     *
+     * @param string $file
+     * @return mixed
+     */
+    public function read($file)
+    {
+        return \file_get_contents($file);
+    }
+
+    /**
+     * Rewrite a file (or create + write)
+     *
+     * @param string $file
+     * @param string $content
+     * @return integer
+     */
+    public function rewrite($file, $content)
+    {
+        return \file_put_contents($file, $content);
+    }
+
+    /**
+     * Append to a file
+     *
+     * @param string $file
+     * @param string $content
+     * @return integer
+     */
+    public function append($file, $content)
+    {
+        return \file_put_contents($file, $content, FILE_APPEND);
+    }
+
 }
 
