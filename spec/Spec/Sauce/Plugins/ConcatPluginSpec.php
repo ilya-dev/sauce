@@ -17,10 +17,10 @@ class ConcatPluginSpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\Plugins\ConcatPlugin');
     }
 
-    function it_transforms_multiple_files_to_one(Filesystem $file)
+    function it_transforms_multiple_files_to_one(Filesystem $mock)
     {
-        $file->read('foo')->willReturn('baz');
-        $file->append('bar', 'baz')->shouldBeCalled();
+        $mock->read('foo')->willReturn('baz');
+        $mock->append('bar', 'baz')->shouldBeCalled();
 
         $this->run('foo', 'bar');
     }

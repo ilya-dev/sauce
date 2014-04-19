@@ -11,7 +11,7 @@ class ConcatPlugin extends Plugin {
      */
     public function run($from, $to)
     {
-
+        $this->filesystem->append($to, $this->filesystem->read($from));
     }
 
     /**
