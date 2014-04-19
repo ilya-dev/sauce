@@ -11,7 +11,7 @@ class CopyPlugin extends Plugin {
      */
     public function run($from, $to)
     {
-
+        $this->filesystem->rewrite($to, $this->filesystem->read($from));
     }
 
     /**
