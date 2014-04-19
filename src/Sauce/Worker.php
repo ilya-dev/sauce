@@ -1,8 +1,58 @@
 <?php namespace Sauce;
 
+use PhpSpec\Util\Filesystem;
 use Sauce\Plugins\Plugin;
 
 class Worker {
+
+    /**
+     * The Filesystem instance
+     *
+     * @var Filesystem
+     */
+    protected $filesystem;
+
+    /**
+     * The Utils instance
+     *
+     * @var Utils
+     */
+    protected $utils;
+
+    /**
+     * The plugins you want to use
+     *
+     * @var array
+     */
+    protected $plugins = [];
+
+    /**
+     * The input path (list)
+     *
+     * @var array
+     */
+    protected $in;
+
+    /**
+     * The output path
+     *
+     * @var string
+     */
+    protected $out;
+
+    /**
+     * The constructor
+     *
+     * @param Filesystem|null $filesystem
+     * @param Utils|null $utils
+     * @return Worker
+     */
+    public function __construct(Filesystem $filesystem = null, Utils $utils = null)
+    {
+        $this->filesystem = $filesystem ?: new Filesystem;
+
+        $this->utils  = $utils ?: new Utils;
+    }
 
     /**
      * Select files you want to work with, start a chain
@@ -12,7 +62,7 @@ class Worker {
      */
     public function in($path)
     {
-
+        $this->in = $path;
     }
 
     /**
@@ -23,7 +73,7 @@ class Worker {
      */
     public function pipe(Plugin $plugin)
     {
-
+        $this->plugins[] = $plugin;
     }
 
     /**
@@ -34,7 +84,7 @@ class Worker {
      */
     public function out($path)
     {
-
+        $this->out = $path;
     }
 
 }
