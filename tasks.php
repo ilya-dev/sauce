@@ -2,15 +2,15 @@
 
 // an example of the task file
 
-task("default", ["compile_coffee", "concatenate"]);
+task("default", ["copy", "concat"]);
 
-task("compile_coffee", function($coffeeCompiler)
+task("copy", function($copy)
 {
-    $this->in('app/assets/js')->pipe($coffeeCompiler)->out('public/js');
+    $this->in('app/assets/js')->pipe($copy())->out('public/js');
 });
 
-task("concatenate", function($concatenator)
+task("concat", function($concat)
 {
-    $this->in('public/js')->pipe($concatenator)->out('public/all.js');
+    $this->in('public/js')->pipe($concat())->out('public/all.js');
 });
 

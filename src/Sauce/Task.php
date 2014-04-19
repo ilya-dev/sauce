@@ -70,7 +70,7 @@ class Task {
                 $parameters = $this->reflector->resolve($this->plugins);
             }
 
-            \call_user_func_array($closure, $parameters);
+            $this->reflector->withContext(new Worker, $parameters);
 
             return null;
         }
