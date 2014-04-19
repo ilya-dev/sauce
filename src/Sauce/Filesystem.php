@@ -45,6 +45,17 @@ class Filesystem {
     }
 
     /**
+     * Remove a file
+     *
+     * @param string $file
+     * @return boolean
+     */
+    public function remove($file)
+    {
+        return @unlink($file);
+    }
+
+    /**
      * Get all files placed in the given directory.
      * The output will be like ['foo.txt', 'bar.jpg', ...]
      *
