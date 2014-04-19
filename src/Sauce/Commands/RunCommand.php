@@ -5,7 +5,29 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
+use Sauce\Sauce;
+
 class RunCommand extends Command {
+
+    /**
+     * The Sauce instance
+     *
+     * @var \Sauce\Sauce
+     */
+    protected $sauce;
+
+    /**
+     * The constructor
+     *
+     * @param \Sauce\Sauce|null $sauce
+     * @return RunCommand
+     */
+    public function __construct(Sauce $sauce = null)
+    {
+        parent::__construct();
+
+        $this->sauce = $sauce ?: new Sauce;
+    }
 
     /**
      * Configure the command
@@ -33,8 +55,9 @@ class RunCommand extends Command {
     {
         $task = $input->getArgument('task');
 
-        $output->writeln('The work dir is '.getenv('SAUCE_WORK_DIR'));
-        $output->writeln("<info>Running the task {$task}...</info>");
+        $output->writeln("<info>Running task: <comment>{$task}</comment>...</info>");
+
+        $this->sauce->run($task);
     }
 
 }
