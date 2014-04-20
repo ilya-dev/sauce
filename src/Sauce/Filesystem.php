@@ -84,6 +84,13 @@ class Filesystem {
      */
     public function read($file)
     {
+        if ( ! \is_readable($file))
+        {
+            $message = "File {$file} does not exist";
+
+            throw new \RuntimeException($message);
+        }
+
         return \file_get_contents($file);
     }
 
