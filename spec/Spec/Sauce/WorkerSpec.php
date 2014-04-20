@@ -2,6 +2,7 @@
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sauce\Plugins\Plugin;
 
 class WorkerSpec extends ObjectBehavior {
 
@@ -13,6 +14,11 @@ class WorkerSpec extends ObjectBehavior {
     function it_receives_the_input_path()
     {
         $this->in('something')->shouldReturnItself();
+    }
+
+    function it_receives_a_plugin(Plugin $plugin)
+    {
+        $this->pipe($plugin)->shouldReturnItself();
     }
 
     /**
