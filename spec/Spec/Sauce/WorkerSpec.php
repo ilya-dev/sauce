@@ -10,7 +10,25 @@ class WorkerSpec extends ObjectBehavior {
         $this->shouldHaveType('Sauce\Worker');
     }
 
+    function it_receives_the_input_path()
+    {
+        $this->in('something')->shouldReturnItself();
+    }
 
+    /**
+     * Get the inline matchers
+     *
+     * @return array
+     */
+    public function getMatchers()
+    {
+        return [
+            'returnItself' => function($subject)
+            {
+                return ($subject instanceof \Sauce\Worker);
+            },
+        ];
+    }
 
 }
 
