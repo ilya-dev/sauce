@@ -90,6 +90,8 @@ class Worker {
         $this->out = $path;
 
         $this->run();
+
+        $this->plugins = [];
     }
 
     /**
