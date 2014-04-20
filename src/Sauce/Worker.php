@@ -105,6 +105,8 @@ class Worker {
 
         $paths = $this->utils->combine($in, $this->out);
 
+        $prefix = \getenv('SAUCE_WORK_DIR').'/';
+
         foreach ($this->plugins as $plugin)
         {
             /**
@@ -113,7 +115,7 @@ class Worker {
 
             foreach ($paths as $from => $to)
             {
-                $plugin->run($from, $to);
+                $plugin->run($prefix.$from, $prefix.$to);
             }
         }
     }
