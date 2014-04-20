@@ -115,7 +115,7 @@ class Worker {
              * @var Plugins\Plugin $plugin
              */
 
-            foreach ($paths as $from => $to)
+            foreach ($paths as list($from, $to))
             {
                 $plugin->run($prefix.$from, $prefix.$to);
             }
